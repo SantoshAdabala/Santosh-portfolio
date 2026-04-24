@@ -20,6 +20,16 @@ export const projects: Project[] = [
     category: 'rag',
   },
   {
+    id: 'clinical-nlp',
+    title: 'Clinical NLP — Healthcare NER Pipeline',
+    description:
+      'End-to-end ML engineering project for clinical Named Entity Recognition. Distilled Bio_ClinicalBERT (110M) into DistilClinicalBERT (65M) retaining 93.2% F1, achieving 3.5x faster inference (39ms→11ms) and 6.6x model compression (411MB→62.6MB). Built distributed processing on AWS EMR handling 900K records in 3.5 minutes at 4,350 docs/sec, with weak labeling over 7K PubMed abstracts generating 19.5K entities.',
+    techStack: ['PyTorch', 'HuggingFace', 'ONNX Runtime', 'PySpark', 'AWS EMR', 'FastAPI', 'Prometheus', 'Terraform'],
+    githubUrl: 'https://github.com/SantoshAdabala/clinical-nlp-optimization',
+    metrics: '93.2% F1 retention · 3.5x faster · 6.6x smaller',
+    category: 'ner',
+  },
+  {
     id: 'cold-email-gen',
     title: 'Cold Email Generator',
     description:

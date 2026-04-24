@@ -9,10 +9,10 @@ import { TiltCard } from '@/components/ui/TiltCard';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const impactMetrics = [
-  { value: '175M→45M', label: 'Model Compression', pct: 74, color: '#8b5cf6' },
-  { value: '3x Faster', label: 'Inference Speed', pct: 85, color: '#06b6d4' },
-  { value: '$2M+', label: 'Fraud Detected', pct: 92, color: '#22d3ee' },
-  { value: '10M+', label: 'Records/Month', pct: 95, color: '#a78bfa' },
+  { value: '110M→65M', label: 'Model Compression', pct: 74, color: '#8b5cf6' },
+  { value: '3.5x Faster', label: 'Inference Speed', pct: 88, color: '#06b6d4' },
+  { value: '93.2%', label: 'F1 Retained', pct: 93, color: '#22d3ee' },
+  { value: '4,350/s', label: 'Docs Processed', pct: 95, color: '#a78bfa' },
 ];
 
 function AnimatedRing({ pct, color, size = 80 }: { pct: number; color: string; size?: number }) {

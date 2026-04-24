@@ -13,7 +13,7 @@ const keywords = ['LLM Fine-Tuning', 'Knowledge Distillation', 'PyTorch', 'Distr
 const stats = [
   { value: '6+', label: 'Years Experience' },
   { value: '10M+', label: 'Records Processed' },
-  { value: '3x', label: 'Inference Speedup' },
+  { value: '3.5x', label: 'Inference Speedup' },
   { value: '$2M+', label: 'Fraud Flagged' },
 ];
 
