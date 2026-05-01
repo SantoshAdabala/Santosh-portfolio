@@ -4,13 +4,9 @@ import { motion } from 'framer-motion';
 import { Star, GitFork } from 'lucide-react';
 import { githubStats } from '@/data/github-stats';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { AnimatedCounter } from '@/components/ui/AnimatedCounter';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
+import { CountUp } from '@/components/ui/CountUp';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
 
 // Seeded pseudo-random for deterministic contribution data
 function seededRandom(seed: number) {
@@ -19,15 +15,13 @@ function seededRandom(seed: number) {
 }
 
 function generateContributions(): number[] {
-  const total = 52 * 7; // 52 weeks × 7 days
+  const total = 52 * 7;
   const data: number[] = [];
   for (let i = 0; i < total; i++) {
     const r = seededRandom(i * 31 + 7);
     const weekOfYear = Math.floor(i / 7);
-    // Higher activity mid-year and towards end
     const seasonalBoost = Math.sin((weekOfYear / 52) * Math.PI) * 0.3 + 0.5;
     const dayOfWeek = i % 7;
-    // Weekdays more active
     const weekdayBoost = dayOfWeek >= 1 && dayOfWeek <= 5 ? 1.3 : 0.6;
     const val = r * seasonalBoost * weekdayBoost;
 
@@ -41,16 +35,16 @@ function generateContributions(): number[] {
 }
 
 const CONTRIBUTION_COLORS = [
-  'var(--color-muted)',       // 0: no contributions
-  '#6D28D9',                  // 1: low (violet-700)
-  '#7C3AED',                  // 2: medium-low (violet-600)
-  '#8B5CF6',                  // 3: medium-high (violet-500)
-  '#A78BFA',                  // 4: high (violet-400)
+  'var(--color-muted)',
+  '#6D28D9',
+  '#7C3AED',
+  '#8B5CF6',
+  '#A78BFA',
 ];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function ContributionHeatmap() {
+function AnimatedHeatmap() {
   const contributions = generateContributions();
   const cellSize = 12;
   const gap = 3;
@@ -65,7 +59,6 @@ function ContributionHeatmap() {
         role="img"
         aria-label="GitHub contribution heatmap showing activity over the past year"
       >
-        {/* Month labels */}
         {MONTHS.map((month, i) => (
           <text
             key={month}
@@ -78,7 +71,6 @@ function ContributionHeatmap() {
             {month}
           </text>
         ))}
-        {/* Cells */}
         {contributions.map((level, i) => {
           const week = Math.floor(i / 7);
           const day = i % 7;
@@ -95,7 +87,7 @@ function ContributionHeatmap() {
           );
         })}
       </svg>
-      <div className="mt-3 flex items-center justify-end gap-1 text-xs text-foreground/60 dark:text-foreground">
+      <div className="mt-3 flex items-center justify-end gap-1 text-xs text-foreground/50">
         <span>Less</span>
         {CONTRIBUTION_COLORS.map((color, i) => (
           <span
@@ -113,15 +105,6 @@ function ContributionHeatmap() {
 export function GitHubStatsSection() {
   const prefersReduced = useReducedMotion();
 
-  const viewProps = prefersReduced
-    ? {}
-    : {
-        variants: fadeIn,
-        initial: 'hidden',
-        whileInView: 'visible',
-        viewport: { once: true, margin: '-80px' },
-      };
-
   return (
     <section id="github" className="px-6 py-24">
       <div className="mx-auto max-w-4xl">
@@ -130,50 +113,100 @@ export function GitHubStatsSection() {
           subtitle="Open-source contributions and stats"
         />
 
-        {/* Stars & Forks */}
-        <motion.div
-          className="grid grid-cols-2 gap-6 sm:grid-cols-2"
-          {...viewProps}
-        >
-          <div className="flex flex-col items-center rounded-xl border border-border bg-background p-6">
-            <Star className="mb-2 h-6 w-6 text-accent" />
-            <AnimatedCounter target={githubStats.totalStars} className="text-3xl font-bold" />
-            <span className="mt-1 text-sm text-foreground/60 dark:text-foreground">Total Stars</span>
-          </div>
-          <div className="flex flex-col items-center rounded-xl border border-border bg-background p-6">
-            <GitFork className="mb-2 h-6 w-6 text-accent" />
-            <AnimatedCounter target={githubStats.totalForks} className="text-3xl font-bold" />
-            <span className="mt-1 text-sm text-foreground/60 dark:text-foreground">Total Forks</span>
-          </div>
-        </motion.div>
+        {/* Stars & Forks — with spotlight + spring count */}
+        <div className="grid grid-cols-2 gap-6">
+          {[
+            { icon: Star, value: githubStats.totalStars.toString(), label: 'Total Stars', color: 'rgba(139, 92, 246, 0.12)' },
+            { icon: GitFork, value: githubStats.totalForks.toString(), label: 'Total Forks', color: 'rgba(6, 182, 212, 0.12)' },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              {...(prefersReduced ? {} : {
+                initial: { opacity: 0, y: 40, scale: 0.9 },
+                whileInView: { opacity: 1, y: 0, scale: 1 },
+                viewport: { once: true },
+                transition: { delay: i * 0.15, type: 'spring', stiffness: 100, damping: 15 },
+              })}
+            >
+              <SpotlightCard
+                className="rounded-xl border border-border/50 bg-background/50"
+                spotlightColor={stat.color}
+              >
+                <div className="flex flex-col items-center p-8">
+                  <stat.icon className="mb-3 h-7 w-7 text-accent" />
+                  <CountUp value={stat.value} className="text-4xl font-bold gradient-text" />
+                  <span className="mt-2 text-sm text-foreground/50">{stat.label}</span>
+                </div>
+              </SpotlightCard>
+            </motion.div>
+          ))}
+        </div>
 
-        {/* Top Languages */}
-        <motion.div className="mt-8" {...viewProps}>
-          <h3 className="mb-4 text-lg font-semibold">Top Languages</h3>
-          <div className="space-y-3">
-            {githubStats.topLanguages.map((lang) => (
+        {/* Top Languages — animated bars */}
+        <motion.div
+          className="mt-10"
+          {...(prefersReduced ? {} : {
+            initial: { opacity: 0, y: 30 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+            transition: { duration: 0.6 },
+          })}
+        >
+          <h3 className="mb-5 text-lg font-semibold">Top Languages</h3>
+          <div className="space-y-4">
+            {githubStats.topLanguages.map((lang, i) => (
               <div key={lang.name} className="flex items-center gap-3">
-                <span className="w-28 shrink-0 text-sm font-medium">{lang.name}</span>
-                <div className="h-3 flex-1 overflow-hidden rounded-full bg-muted">
-                  <div
-                    className="h-full rounded-full bg-accent"
-                    style={{ width: `${lang.percentage}%` }}
+                <span className="w-32 shrink-0 text-sm font-medium">{lang.name}</span>
+                <div className="h-3 flex-1 overflow-hidden rounded-full bg-muted/50">
+                  <motion.div
+                    className="h-full rounded-full"
+                    {...(prefersReduced
+                      ? { style: { width: `${lang.percentage}%`, background: 'linear-gradient(90deg, #8b5cf6, #06b6d4)' } }
+                      : {
+                          style: { background: 'linear-gradient(90deg, #8b5cf6, #06b6d4)' },
+                          initial: { width: '0%' },
+                          whileInView: { width: `${lang.percentage}%` },
+                          viewport: { once: true },
+                          transition: { delay: i * 0.1, duration: 1, ease: [0.25, 0.1, 0.25, 1] as const },
+                        }
+                    )}
                   />
                 </div>
-                <span className="w-10 text-right text-sm text-foreground/60 dark:text-foreground">
+                <motion.span
+                  className="w-12 text-right text-sm font-mono text-foreground/50"
+                  {...(prefersReduced ? {} : {
+                    initial: { opacity: 0 },
+                    whileInView: { opacity: 1 },
+                    viewport: { once: true },
+                    transition: { delay: i * 0.1 + 0.5 },
+                  })}
+                >
                   {lang.percentage}%
-                </span>
+                </motion.span>
               </div>
             ))}
           </div>
         </motion.div>
 
-        {/* Contribution Graph */}
-        <motion.div className="mt-8" {...viewProps}>
-          <h3 className="mb-4 text-lg font-semibold">Contribution Graph</h3>
-          <div className="overflow-x-auto rounded-xl border border-border bg-background p-4">
-            <ContributionHeatmap />
-          </div>
+        {/* Contribution Graph — animated cells */}
+        <motion.div
+          className="mt-10"
+          {...(prefersReduced ? {} : {
+            initial: { opacity: 0, y: 30 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true },
+            transition: { duration: 0.6 },
+          })}
+        >
+          <h3 className="mb-5 text-lg font-semibold">Contribution Graph</h3>
+          <SpotlightCard
+            className="overflow-x-auto rounded-xl border border-border/50 bg-background/50"
+            spotlightColor="rgba(139, 92, 246, 0.06)"
+          >
+            <div className="p-5">
+              <AnimatedHeatmap />
+            </div>
+          </SpotlightCard>
         </motion.div>
       </div>
     </section>

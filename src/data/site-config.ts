@@ -8,7 +8,7 @@ export const siteConfig: SiteConfig = {
   description:
     'Portfolio of Siva Naga Santosh Adabala — Machine Learning Engineer specializing in LLM customization, distributed ML pipelines, and production AI systems. 6+ years of experience.',
   email: 'santoshbalu25@gmail.com',
-  linkedIn: 'https://linkedin.com/in/santoshadabala',
+  linkedIn: 'https://www.linkedin.com/in/santosh-adabala/',
   github: 'https://github.com/SantoshAdabala',
   twitter: undefined,
   calendly: undefined,

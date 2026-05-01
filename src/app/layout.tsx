@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono';
 import { ThemeProvider } from 'next-themes';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { EasterEgg } from '@/components/ui/EasterEgg';
 import { AIParticleSimulator } from '@/components/ui/AIParticleSimulator';
 import { MagneticCursor } from '@/components/ui/MagneticCursor';
@@ -83,6 +84,7 @@ export default function RootLayout({
       <body className="noise-overlay">
         <ThemeProvider attribute="class" defaultTheme="dark">
           <SmoothScroll />
+          <ScrollProgress />
           <MagneticCursor />
           <AIParticleSimulator />
           <header>

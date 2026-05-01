@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-// Apple-style: elements scale up from 0.92, fade in, and slide up with a spring
+// Cinematic reveal — scale + blur + slide + spring
 export function AppleReveal({ children, className }: Props) {
   const prefersReduced = useReducedMotion();
 
@@ -20,14 +20,14 @@ export function AppleReveal({ children, className }: Props) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60, scale: 0.92 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-100px' }}
+      initial={{ opacity: 0, y: 100, scale: 0.88, filter: 'blur(12px)' }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-80px' }}
       transition={{
         type: 'spring',
-        stiffness: 80,
-        damping: 20,
-        mass: 0.8,
+        stiffness: 60,
+        damping: 18,
+        mass: 1,
       }}
       className={className}
     >
@@ -45,7 +45,7 @@ export function AppleParallax({ children, className }: Props) {
     offset: ['start end', 'end start'],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['-5%', '5%']);
+  const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   if (prefersReduced) {
     return <div ref={ref} className={className}>{children}</div>;

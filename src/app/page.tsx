@@ -8,30 +8,29 @@ import { CertificationsSection } from '@/components/sections/CertificationsSecti
 import { GitHubStatsSection } from '@/components/sections/GitHubStatsSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { AppleReveal } from '@/components/ui/AppleReveal';
-
-function Divider() {
-  return <div className="section-divider mx-auto max-w-4xl" />;
-}
+import { TechMarquee } from '@/components/ui/TechMarquee';
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <Divider />
+      <TechMarquee />
+      <AnimatedDivider />
       <AppleReveal><AboutSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><SkillsSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><ProjectsSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><ExperienceSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><PublicationsSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><CertificationsSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><GitHubStatsSection /></AppleReveal>
-      <Divider />
+      <AnimatedDivider />
       <AppleReveal><ContactSection /></AppleReveal>
     </>
   );

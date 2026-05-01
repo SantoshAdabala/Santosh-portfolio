@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { siteConfig } from '@/data/site-config';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { MobileMenu } from '@/components/ui/MobileMenu';
+import { MagneticElement } from '@/components/ui/MagneticElement';
 import { useScrollSpy } from '@/hooks/useScrollSpy';
 import type { LucideIcon } from 'lucide-react';
 
@@ -56,6 +57,18 @@ export function Navbar() {
 
   return (
     <>
+      {/* Fixed name — top left on desktop */}
+      <a
+        href="#hero"
+        onClick={(e) => handleNavClick(e, '#hero')}
+        className={cn(
+          'fixed top-6 left-6 z-40 hidden md:block text-lg font-bold gradient-text text-shimmer transition-all duration-500',
+          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0',
+        )}
+      >
+        {siteConfig.name}
+      </a>
+
       {/* Floating bottom dock — desktop */}
       <nav
         className={cn(
@@ -67,24 +80,25 @@ export function Navbar() {
           {navItems.map((item) => {
             const isActive = activeId === item.href.slice(1);
             return (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className={cn(
-                  'group relative flex flex-col items-center gap-0.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-200',
-                  isActive
-                    ? 'text-accent-light bg-accent/10'
-                    : 'text-foreground/50 hover:text-foreground/80 hover:bg-white/5',
-                )}
-                aria-label={item.label}
-              >
-                {isActive && (
-                  <span className="absolute -top-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-accent-light shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
-                )}
-                <item.icon className="h-4 w-4" />
-                <span className="text-[10px]">{item.label}</span>
-              </a>
+              <MagneticElement key={item.href} strength={0.25}>
+                <a
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    'group relative flex flex-col items-center gap-0.5 rounded-xl px-3 py-2 text-xs font-medium transition-all duration-200',
+                    isActive
+                      ? 'text-accent-light bg-accent/10'
+                      : 'text-foreground/50 hover:text-foreground/80 hover:bg-white/5',
+                  )}
+                  aria-label={item.label}
+                >
+                  {isActive && (
+                    <span className="absolute -top-1 left-1/2 h-1 w-6 -translate-x-1/2 rounded-full bg-accent-light shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
+                  )}
+                  <item.icon className="h-4 w-4" />
+                  <span className="text-[10px]">{item.label}</span>
+                </a>
+              </MagneticElement>
             );
           })}
           <div className="mx-1 h-8 w-px bg-border/30" />

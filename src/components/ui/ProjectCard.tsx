@@ -3,6 +3,7 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ProjectIllustration } from '@/components/ui/ProjectIllustration';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { useTilt } from '@/hooks/useTilt';
 import type { Project } from '@/types';
 
@@ -25,14 +26,17 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
   const { style, onMouseMove, onMouseLeave } = useTilt(10);
 
   return (
-    <div
-      style={style}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
+    <SpotlightCard
       className={cn(
         'glass group flex flex-col overflow-hidden rounded-2xl transition-shadow duration-300 hover:glow-purple shadow-3d will-change-transform',
         className,
       )}
+      spotlightColor={config.gradient.includes('violet') ? 'rgba(139, 92, 246, 0.15)' : 'rgba(6, 182, 212, 0.15)'}
+    >
+    <div
+      style={style}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
     >
       {/* Thumbnail with SVG illustration */}
       <div className={cn('relative flex h-44 items-center justify-center bg-gradient-to-br overflow-hidden', config.gradient)}>
@@ -92,5 +96,6 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         </div>
       </div>
     </div>
+    </SpotlightCard>
   );
 }
