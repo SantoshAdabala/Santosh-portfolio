@@ -8,6 +8,7 @@ import { TechRadar } from '@/components/ui/TechRadar';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { TextReveal } from '@/components/ui/TextReveal';
 import { AnimatedBorder } from '@/components/ui/AnimatedBorder';
+import { CodeTypewriter } from '@/components/ui/CodeTypewriter';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const impactMetrics = [
@@ -45,6 +46,14 @@ export function AboutSection() {
           text="I build ML systems that make large language models faster, smaller, and production-ready. With 6+ years of experience, I specialize in LLM customization workflows — fine-tuning, knowledge distillation, prompt optimization, and model compression."
           className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-foreground/50 dark:text-foreground/70"
         />
+
+        {/* Live code typewriter */}
+        <motion.div
+          className="mx-auto mt-16 max-w-2xl"
+          {...cardAnim(0.05)}
+        >
+          <CodeTypewriter />
+        </motion.div>
 
         {/* ── Bento Grid ── */}
         <div className="mt-20 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">

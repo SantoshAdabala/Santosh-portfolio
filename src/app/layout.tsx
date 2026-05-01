@@ -8,6 +8,7 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { EasterEgg } from '@/components/ui/EasterEgg';
 import { AIParticleSimulator } from '@/components/ui/AIParticleSimulator';
 import { MagneticCursor } from '@/components/ui/MagneticCursor';
+import { CursorTrail } from '@/components/ui/CursorTrail';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
@@ -86,6 +87,7 @@ export default function RootLayout({
           <SmoothScroll />
           <ScrollProgress />
           <MagneticCursor />
+          <CursorTrail />
           <AIParticleSimulator />
           <header>
             <Navbar />
