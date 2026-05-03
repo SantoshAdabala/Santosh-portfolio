@@ -9,6 +9,7 @@ import { EasterEgg } from '@/components/ui/EasterEgg';
 import { AIParticleSimulator } from '@/components/ui/AIParticleSimulator';
 import { MagneticCursor } from '@/components/ui/MagneticCursor';
 import { CursorTrail } from '@/components/ui/CursorTrail';
+import { PageLoader } from '@/components/ui/PageLoader';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
@@ -18,6 +19,11 @@ import './globals.css';
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
+  metadataBase: new URL('https://santoshadabala.com'),
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -84,6 +90,7 @@ export default function RootLayout({
       </head>
       <body className="noise-overlay">
         <ThemeProvider attribute="class" defaultTheme="dark">
+          <PageLoader />
           <SmoothScroll />
           <ScrollProgress />
           <MagneticCursor />
