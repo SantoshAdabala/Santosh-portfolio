@@ -2,8 +2,6 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
-import { CaseStudiesSection } from '@/components/sections/CaseStudiesSection';
-import { ImpactDashboardSection } from '@/components/sections/ImpactDashboardSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { PublicationsSection } from '@/components/sections/PublicationsSection';
 import { CertificationsSection } from '@/components/sections/CertificationsSection';
@@ -24,10 +22,6 @@ export default function Home() {
       <AppleReveal><SkillsSection /></AppleReveal>
       <AnimatedDivider />
       <AppleReveal><ProjectsSection /></AppleReveal>
-      <AnimatedDivider />
-      <AppleReveal><CaseStudiesSection /></AppleReveal>
-      <AnimatedDivider />
-      <AppleReveal><ImpactDashboardSection /></AppleReveal>
       <AnimatedDivider />
       <AppleReveal><ExperienceSection /></AppleReveal>
       <AnimatedDivider />
