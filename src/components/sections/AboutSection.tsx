@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, MapPin, Trophy, ExternalLink, Cpu, Zap, Database, BarChart3 } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { TechRadar } from '@/components/ui/TechRadar';
+import { SystemStudio } from '@/components/ui/SystemStudio';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { TextReveal } from '@/components/ui/TextReveal';
 import { AnimatedBorder } from '@/components/ui/AnimatedBorder';
@@ -148,14 +148,16 @@ export function AboutSection() {
           </motion.div>
         </div>
 
-        {/* Tech Radar */}
+        {/* System studio */}
         <motion.div
           className="mt-24"
           {...cardAnim(0.1)}
         >
-          <h3 className="mb-2 text-center text-lg font-semibold gradient-text">Technology Radar</h3>
-          <p className="mb-8 text-center text-sm text-foreground/40 dark:text-foreground/50">Click a category to filter • Core → Proficient → Familiar</p>
-          <TechRadar />
+          <h3 className="mb-2 text-center text-lg font-semibold gradient-text">System Studio</h3>
+          <p className="mb-8 text-center text-sm text-foreground/40 dark:text-foreground/50">
+            Choose a real problem, tune the priority, and see the architecture tradeoffs behind the work
+          </p>
+          <SystemStudio />
         </motion.div>
       </div>
     </section>

@@ -35,6 +35,12 @@ export interface Project {
   githubUrl: string;
   liveUrl?: string;
   metrics?: string;
+  caseStudy?: {
+    problem: string;
+    approach: string;
+    impact: string;
+    proofPoints: string[];
+  };
   category: 'llm' | 'rag' | 'ner' | 'sentiment' | 'transformer' | 'mlops';
 }
 

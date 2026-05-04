@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { SkillBar } from '@/components/ui/SkillBar';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { NeuralNetworkBg } from '@/components/ui/NeuralNetworkBg';
+import { usePortfolioInteraction } from '@/components/providers/PortfolioInteractionProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import type { LucideIcon } from 'lucide-react';
 
@@ -28,6 +29,7 @@ const spotlightColors = [
 
 export function SkillsSection() {
   const prefersReduced = useReducedMotion();
+  const { selectedSkill, setSelectedSkill, clearSelectedSkill } = usePortfolioInteraction();
 
   return (
     <section id="skills" className="relative px-6 py-24 overflow-hidden">
@@ -35,7 +37,7 @@ export function SkillsSection() {
       <div className="relative mx-auto max-w-6xl">
         <SectionHeading
           title="Skills & Expertise"
-          subtitle="Technologies and tools I work with"
+          subtitle={selectedSkill ? `Showing portfolio evidence for ${selectedSkill}` : 'Click a skill to connect it to matching projects'}
         />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -70,6 +72,15 @@ export function SkillsSection() {
                           key={skill.name}
                           name={skill.name}
                           proficiency={skill.proficiency}
+                          active={selectedSkill === skill.name}
+                          onSelect={() => {
+                            if (selectedSkill === skill.name) {
+                              clearSelectedSkill();
+                              return;
+                            }
+                            setSelectedSkill(skill.name);
+                            document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
                         />
                       ))}
                     </div>

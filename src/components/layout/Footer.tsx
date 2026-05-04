@@ -30,10 +30,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-3 text-center text-sm text-foreground/40 dark:text-foreground">
           <VisitorCounter />
-          <p>
-            Built with{' '}
-            <span className="gradient-text font-medium">Next.js, Tailwind CSS &amp; Framer Motion</span>
-          </p>
+          <p>Designed as an interactive portfolio for ML, AI systems, and production impact.</p>
           <p>Last updated {siteConfig.lastUpdated}</p>
         </div>
       </div>

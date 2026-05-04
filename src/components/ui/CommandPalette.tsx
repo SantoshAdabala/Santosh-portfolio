@@ -47,6 +47,8 @@ export function CommandPalette() {
     { id: 'about', label: 'About', icon: User, action: () => navigateTo('about'), category: 'navigation' },
     { id: 'skills', label: 'Skills & Expertise', icon: Wrench, action: () => navigateTo('skills'), category: 'navigation', keywords: 'tech stack' },
     { id: 'projects', label: 'Projects', icon: FolderOpen, action: () => navigateTo('projects'), category: 'navigation', keywords: 'work portfolio' },
+    { id: 'case-studies', label: 'Case Studies', icon: BookOpen, action: () => navigateTo('case-studies'), category: 'navigation', keywords: 'impact proof metrics' },
+    { id: 'impact', label: 'Impact Dashboard', icon: Award, action: () => navigateTo('impact'), category: 'navigation', keywords: 'metrics outcomes performance' },
     { id: 'experience', label: 'Experience', icon: Briefcase, action: () => navigateTo('experience'), category: 'navigation', keywords: 'career jobs' },
     { id: 'publications', label: 'Publications', icon: BookOpen, action: () => navigateTo('publications'), category: 'navigation', keywords: 'papers writing' },
     { id: 'certifications', label: 'Certifications', icon: Award, action: () => navigateTo('certifications'), category: 'navigation', keywords: 'certs credentials' },
@@ -79,7 +81,7 @@ export function CommandPalette() {
     {
       id: 'view-card', label: 'View Contact Card',
       icon: ExternalLink,
-      action: () => { window.location.href = '/card'; close(); },
+      action: () => { window.location.href = '/card/'; close(); },
       category: 'actions', keywords: 'badge business card download',
     },
   ];

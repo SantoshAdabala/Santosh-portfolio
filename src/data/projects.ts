@@ -8,6 +8,15 @@ export const projects: Project[] = [
       'An AI-powered inheritance system that lets a parent\'s decision patterns be inherited through cryptographically scoped tokens via Auth0 Token Vault. Uses Claude for wisdom extraction and multi-generational delegation with 2-of-3 trustee multi-sig.',
     techStack: ['Python', 'Flask', 'Auth0', 'Claude API', 'JWT', 'RSA'],
     githubUrl: 'https://github.com/SantoshAdabala/TheInheritableAgent',
+    caseStudy: {
+      problem:
+        'Personal AI agents usually inherit too much authority or too little context. The challenge was to model how someone could pass down decision patterns without exposing unrestricted account access.',
+      approach:
+        'Built scoped delegation around Auth0 Token Vault, Claude-based wisdom extraction, cryptographic tokens, and a 2-of-3 trustee approval flow for sensitive actions.',
+      impact:
+        'Demonstrates a safer architecture for inheritable agents: scoped permissions, auditable delegation, and human checkpoints around high-trust decisions.',
+      proofPoints: ['Cryptographically scoped JWT/RSA flow', '2-of-3 trustee multi-sig', 'Claude-powered wisdom extraction'],
+    },
     category: 'llm',
   },
   {
@@ -17,6 +26,15 @@ export const projects: Project[] = [
       'An AI-driven modular Parenting Agent built with Google\'s Agent Development Kit (ADK) and FatSecret integration. Features specialized sub-agents for parenting advice, nutrition meal planning, and basic medical guidance with stateful sessions.',
     techStack: ['Python', 'Google ADK', 'FatSecret API', 'LangChain', 'Agentic AI'],
     githubUrl: 'https://github.com/SantoshAdabala/Agentic_AI_Parenting',
+    caseStudy: {
+      problem:
+        'Parenting questions span nutrition, daily routines, and basic health context, so a single prompt flow can quickly become brittle and hard to maintain.',
+      approach:
+        'Designed a modular ADK-based agent system with specialized sub-agents, stateful sessions, and FatSecret integration for nutrition-aware recommendations.',
+      impact:
+        'Shows how to break a broad assistant into smaller agent responsibilities that are easier to route, test, and extend as new tools are added.',
+      proofPoints: ['Google ADK multi-agent workflow', 'Stateful sessions', 'Nutrition API integration'],
+    },
     category: 'rag',
   },
   {
@@ -27,6 +45,15 @@ export const projects: Project[] = [
     techStack: ['PyTorch', 'HuggingFace', 'ONNX Runtime', 'PySpark', 'AWS EMR', 'FastAPI', 'Prometheus', 'Terraform'],
     githubUrl: 'https://github.com/SantoshAdabala/clinical-nlp-optimization',
     metrics: '93.2% F1 retention · 3.5x faster · 6.6x smaller',
+    caseStudy: {
+      problem:
+        'Clinical NLP models were accurate but too large and slow for high-throughput healthcare entity extraction.',
+      approach:
+        'Distilled Bio_ClinicalBERT into a smaller model, optimized inference with ONNX Runtime, and scaled weak labeling plus processing on AWS EMR.',
+      impact:
+        'Retained 93.2% F1 while cutting inference latency from 39ms to 11ms, shrinking artifacts from 411MB to 62.6MB, and processing 900K records in 3.5 minutes.',
+      proofPoints: ['3.5x faster inference', '6.6x model compression', '4,350 docs/sec EMR pipeline'],
+    },
     category: 'ner',
   },
   {

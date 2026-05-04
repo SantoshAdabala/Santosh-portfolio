@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, Twitter, Download, Calendar, CreditCard } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
@@ -53,6 +54,7 @@ const socialLinks = [
 ];
 
 export function ContactSection() {
+  const router = useRouter();
   const prefersReduced = useReducedMotion();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -113,6 +115,10 @@ export function ContactSection() {
     }
   }
 
+  function handleContactCardClick() {
+    router.push('/card/');
+  }
+
   const inputClasses = 'w-full rounded-xl border border-border/50 bg-background/50 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-accent focus:shadow-[0_0_20px_rgba(139,92,246,0.15)] focus:bg-background placeholder:text-foreground/30';
 
   return (
@@ -157,7 +163,7 @@ export function ContactSection() {
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Button>
-              <Button variant="secondary" href="/card">
+              <Button variant="secondary" type="button" onClick={handleContactCardClick}>
                 <CreditCard className="mr-2 h-4 w-4" />
                 Contact Card
               </Button>

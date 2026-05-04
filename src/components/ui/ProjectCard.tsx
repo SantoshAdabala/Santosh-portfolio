@@ -19,6 +19,7 @@ const categoryConfig: Record<Project['category'], { icon: string; gradient: stri
 interface ProjectCardProps {
   project: Project;
   className?: string;
+  highlighted?: boolean;
 }
 
 function CardFront({ project, config }: { project: Project; config: { icon: string; gradient: string } }) {
@@ -36,7 +37,7 @@ function CardFront({ project, config }: { project: Project; config: { icon: stri
           {/* Flip hint */}
           <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded-full bg-black/40 px-2 py-1 text-[10px] text-white/60 backdrop-blur-sm">
             <RotateCcw className="h-3 w-3" />
-            Click to flip
+            Details
           </div>
         </div>
 
@@ -74,7 +75,7 @@ function CardBack({ project, config }: { project: Project; config: { icon: strin
     <div className="flex flex-col overflow-hidden rounded-2xl shadow-3d h-full border border-accent/20" style={{ background: 'hsl(240, 20%, 4%)' }}>
       <div className={cn('px-5 py-4 bg-gradient-to-br', config.gradient)}>
         <h3 className="text-base font-semibold text-white">{project.title}</h3>
-        <p className="text-xs text-white/60 mt-1">Click to flip back</p>
+        <p className="text-xs text-white/60 mt-1">Project evidence</p>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-5">
@@ -137,12 +138,17 @@ function CardBack({ project, config }: { project: Project; config: { icon: strin
   );
 }
 
-export function ProjectCard({ project, className }: ProjectCardProps) {
+export function ProjectCard({ project, className, highlighted = false }: ProjectCardProps) {
   const config = categoryConfig[project.category];
 
   return (
     <FlipCard
-      className={cn('h-[480px]', className)}
+      className={cn(
+        'h-[480px] rounded-2xl transition-shadow',
+        highlighted && 'ring-2 ring-cyan-light shadow-[0_0_40px_rgba(34,211,238,0.28)]',
+        className,
+      )}
+      ariaLabel={`Show details for ${project.title}`}
       front={<CardFront project={project} config={config} />}
       back={<CardBack project={project} config={config} />}
     />

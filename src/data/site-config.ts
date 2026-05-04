@@ -2,11 +2,11 @@ import type { SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
   name: 'Santosh Adabala',
-  title: 'Machine Learning Engineer | AI Engineer | LLM Fine-Tuning & Distillation',
+  title: 'Machine Learning Engineer | Production LLM Systems & Model Optimization',
   tagline:
-    'I build ML systems that make large language models faster, smaller, and production-ready. Specializing in LLM fine-tuning, knowledge distillation, prompt optimization, and distributed ML at scale.',
+    'I help teams turn LLM prototypes into production systems: smaller models, faster inference, reliable pipelines, and measurable AI outcomes across healthcare and enterprise data.',
   description:
-    'Portfolio of Siva Naga Santosh Adabala — Machine Learning Engineer specializing in LLM customization, distributed ML pipelines, and production AI systems. 6+ years of experience.',
+    'Portfolio of Siva Naga Santosh Adabala — Machine Learning Engineer focused on production LLM systems, model compression, NLP pipelines, and distributed ML infrastructure.',
   email: 'santoshbalu25@gmail.com',
   linkedIn: 'https://www.linkedin.com/in/santosh-adabala/',
   github: 'https://github.com/SantoshAdabala',

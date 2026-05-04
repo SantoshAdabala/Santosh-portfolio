@@ -6,15 +6,14 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { EasterEgg } from '@/components/ui/EasterEgg';
-import { AIParticleSimulator } from '@/components/ui/AIParticleSimulator';
-import { MagneticCursor } from '@/components/ui/MagneticCursor';
-import { CursorTrail } from '@/components/ui/CursorTrail';
-import { PageLoader } from '@/components/ui/PageLoader';
 import { CommandPalette } from '@/components/ui/CommandPalette';
 import { BackToTop } from '@/components/ui/BackToTop';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
+import { PortfolioModeToggle } from '@/components/ui/PortfolioModeToggle';
+import { AskPortfolio } from '@/components/ui/AskPortfolio';
+import { PortfolioInteractionProvider } from '@/components/providers/PortfolioInteractionProvider';
 import { siteConfig } from '@/data/site-config';
 import './globals.css';
 
@@ -94,25 +93,25 @@ export default function RootLayout({
       </head>
       <body className="noise-overlay">
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <PageLoader />
-          <SmoothScroll />
-          <ScrollProgress />
-          <MagneticCursor />
-          <CursorTrail />
-          <AIParticleSimulator />
-          <header>
-            <Navbar />
-          </header>
-          <FluidMotion>
-            <main>{children}</main>
-          </FluidMotion>
-          <FloatingResume />
-          <BackToTop />
-          <footer>
-            <Footer />
-          </footer>
-          <EasterEgg />
-          <CommandPalette />
+          <PortfolioInteractionProvider>
+            <SmoothScroll />
+            <ScrollProgress />
+            <PortfolioModeToggle />
+            <header>
+              <Navbar />
+            </header>
+            <FluidMotion>
+              <main>{children}</main>
+            </FluidMotion>
+            <AskPortfolio />
+            <FloatingResume />
+            <BackToTop />
+            <footer>
+              <Footer />
+            </footer>
+            <EasterEgg />
+            <CommandPalette />
+          </PortfolioInteractionProvider>
         </ThemeProvider>
       </body>
     </html>

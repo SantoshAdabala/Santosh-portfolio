@@ -65,17 +65,20 @@ export function HeroSection() {
           {...(prefersReduced ? {} : { initial: { opacity: 0, y: -20 }, animate: { opacity: 1, y: 0 }, transition: { delay: 0.3, duration: 0.6 } })}
         >
           {siteConfig.openToWork && (
-            <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-green-400">
+            <span className="inline-flex items-center gap-2 rounded-full border border-green-700/25 bg-white px-4 py-2 text-[13px] font-bold leading-none text-green-900 shadow-[0_8px_30px_rgba(15,23,42,0.18)] backdrop-blur-xl dark:border-green-400/25 dark:bg-slate-950/90 dark:text-green-300 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75 dark:bg-green-400" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600 dark:bg-green-400" />
               </span>
               Open to Work
             </span>
           )}
-          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-accent-light">
-            <Sparkles className="h-3 w-3" />
-            Currently Learning: {siteConfig.currentlyLearning}
+          <span className="inline-flex max-w-[min(92vw,720px)] items-center gap-2 rounded-full border border-violet-700/25 bg-white px-4 py-2 text-[13px] font-bold leading-snug text-violet-950 shadow-[0_8px_30px_rgba(15,23,42,0.18)] backdrop-blur-xl dark:border-accent-light/25 dark:bg-slate-950/90 dark:text-violet-200 dark:shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <Sparkles className="h-3.5 w-3.5 shrink-0 text-violet-700 dark:text-accent-light" />
+            <span>
+              <span className="text-violet-700 dark:text-accent-light">Currently Learning:</span>{' '}
+              {siteConfig.currentlyLearning}
+            </span>
           </span>
         </motion.div>
       </div>
@@ -100,7 +103,7 @@ export function HeroSection() {
               })}
             >
               <span className="block text-sm text-foreground/40 mb-1"><TimeGreeting /></span>
-              ML Engineer • LLM Specialist • AI Systems Architect
+              Production LLM Systems • Model Optimization • Distributed ML
             </motion.p>
           </motion.div>
 
