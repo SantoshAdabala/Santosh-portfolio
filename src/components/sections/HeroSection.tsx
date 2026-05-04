@@ -10,6 +10,7 @@ import { LetterAnimation } from '@/components/ui/LetterAnimation';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { CountUp } from '@/components/ui/CountUp';
 import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
+import { TimeGreeting } from '@/components/ui/TimeGreeting';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const keywords = ['LLM Fine-Tuning', 'Knowledge Distillation', 'PyTorch', 'Distributed ML', 'Agentic AI', 'RAG Systems'];
@@ -38,8 +39,8 @@ export function HeroSection() {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.4], ['0px', '60px']);
 
@@ -52,8 +53,6 @@ export function HeroSection() {
       <div className="relative h-[70vh] w-full sm:h-[75vh] overflow-hidden">
         <HeroSlideshow
           className="absolute inset-0"
-          parallaxY={prefersReduced ? undefined : imageY}
-          parallaxScale={prefersReduced ? undefined : imageScale}
         />
         {/* Multi-layer gradient fade */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
@@ -100,6 +99,7 @@ export function HeroSection() {
                 transition: { delay: 1.2, duration: 0.8 },
               })}
             >
+              <span className="block text-sm text-foreground/40 mb-1"><TimeGreeting /></span>
               ML Engineer • LLM Specialist • AI Systems Architect
             </motion.p>
           </motion.div>

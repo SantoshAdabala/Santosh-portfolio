@@ -7,12 +7,12 @@ export function SmoothScroll() {
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
+    // Force scroll to top on page load
+    window.scrollTo(0, 0);
+
     if (prefersReduced) return;
 
-    // Add smooth scroll class to html element
     document.documentElement.style.scrollBehavior = 'smooth';
-
-    // Add momentum-like scroll feel via CSS
     document.documentElement.style.setProperty('scroll-behavior', 'smooth');
 
     return () => {

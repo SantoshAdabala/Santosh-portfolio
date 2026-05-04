@@ -1,0 +1,16 @@
+{
+  "name": "Santosh Adabala — ML Engineer Portfolio",
+  "short_name": "Santosh A.",
+  "description": "Machine Learning Engineer specializing in LLM customization, distributed ML pipelines, and production AI systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050510",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

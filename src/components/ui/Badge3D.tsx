@@ -163,7 +163,11 @@ export function Badge3D({ imageSrc, imageAlt, className }: Props) {
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-[480px] max-w-[90vw] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_40px_rgba(139,92,246,0.1)] pointer-events-none"
+            className="w-[480px] max-w-[90vw] pointer-events-none"
+            style={{
+              borderRadius: '20px',
+              clipPath: 'inset(5% 3% 5% 3% round 20px)',
+            }}
             draggable={false}
           />
         </div>

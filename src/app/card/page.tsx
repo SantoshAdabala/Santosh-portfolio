@@ -26,7 +26,7 @@ export default function CardPage() {
         </p>
 
         <Badge3D
-          imageSrc="/images/contact-card.png"
+          imageSrc="/images/contact-card.webp"
           imageAlt="Santosh Adabala — Digital Contact Card"
           className="mt-4"
         />

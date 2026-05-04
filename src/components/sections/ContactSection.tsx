@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { MagneticElement } from '@/components/ui/MagneticElement';
 import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel';
+import { Confetti } from '@/components/ui/Confetti';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import type { ContactFormData, Testimonial } from '@/types';
 
@@ -60,6 +61,7 @@ export function ContactSection() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const viewProps = prefersReduced
     ? {}
@@ -99,6 +101,8 @@ export function ContactSection() {
       });
       if (res.ok) {
         setStatus('success');
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 3000);
         setFormData({ name: '', email: '', message: '' });
         setErrors({});
       } else {
@@ -113,8 +117,9 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="relative px-6 py-24 overflow-hidden">
+      <Confetti active={showConfetti} />
       <div className="pointer-events-none absolute inset-0">
-        <img src="/images/hero-ai-1.jpg" alt="" className="h-full w-full object-cover opacity-8" />
+        <img src="/images/hero-ai-1.webp" alt="" className="h-full w-full object-cover opacity-8" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
       </div>
       <div className="pointer-events-none absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-cyan/10 blur-[120px]" />

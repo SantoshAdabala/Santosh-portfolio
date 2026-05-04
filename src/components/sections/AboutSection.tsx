@@ -32,7 +32,7 @@ export function AboutSection() {
     <section id="about" className="relative px-6 py-28 overflow-hidden">
       {/* Background layers */}
       <div className="pointer-events-none absolute inset-0">
-        <img src="/images/hero-ai-1.jpg" alt="" className="h-full w-full object-cover opacity-8" />
+        <img src="/images/hero-ai-1.webp" alt="" className="h-full w-full object-cover opacity-8" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
       </div>
       <div className="pointer-events-none absolute top-0 left-1/4 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" />

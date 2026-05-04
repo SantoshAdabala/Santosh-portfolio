@@ -14,7 +14,7 @@ export function ExperienceSection() {
       {/* AI illustration background */}
       <div className="pointer-events-none absolute inset-0">
         <img
-          src="/images/hero-ai-1.jpg"
+          src="/images/hero-ai-1.webp"
           alt=""
           className="h-full w-full object-cover opacity-6"
         />

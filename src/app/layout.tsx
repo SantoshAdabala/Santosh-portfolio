@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
   },
+  manifest: '/manifest.json',
   metadataBase: new URL('https://santoshadabala.com'),
   openGraph: {
     title: siteConfig.title,
@@ -85,6 +86,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preload" href="/images/hero-ai-3.webp" as="image" type="image/webp" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
