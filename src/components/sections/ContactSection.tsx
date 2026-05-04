@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Twitter, Download, Calendar, Quote } from 'lucide-react';
+import { Mail, Linkedin, Github, Twitter, Download, Calendar, CreditCard } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
 import { validateContactForm } from '@/lib/validators';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { MagneticElement } from '@/components/ui/MagneticElement';
+import { TestimonialCarousel } from '@/components/ui/TestimonialCarousel';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import type { ContactFormData, Testimonial } from '@/types';
 
@@ -151,6 +152,10 @@ export function ContactSection() {
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Button>
+              <Button variant="secondary" href="/card">
+                <CreditCard className="mr-2 h-4 w-4" />
+                Contact Card
+              </Button>
               {siteConfig.calendly && (
                 <Button variant="primary" href={siteConfig.calendly} target="_blank" rel="noopener noreferrer">
                   <Calendar className="mr-2 h-4 w-4" />
@@ -235,39 +240,11 @@ export function ContactSection() {
           </motion.div>
         </div>
 
-        {/* Testimonials with spotlight cards */}
+        {/* Testimonials carousel */}
         <motion.div className="mt-20" {...viewProps}>
           <h3 className="mb-8 text-center text-lg font-semibold">What People Say</h3>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {placeholderTestimonials.map((t, i) => (
-              <motion.div
-                key={t.id}
-                {...(prefersReduced ? {} : {
-                  initial: { opacity: 0, y: 20 },
-                  whileInView: { opacity: 1, y: 0 },
-                  viewport: { once: true },
-                  transition: { delay: i * 0.1, duration: 0.5 },
-                })}
-              >
-                <SpotlightCard
-                  className="rounded-xl border border-border/50 bg-background/50 h-full"
-                  spotlightColor="rgba(139, 92, 246, 0.08)"
-                >
-                  <div className="p-6">
-                    <Quote className="mb-3 h-5 w-5 text-accent/30" />
-                    <p className="text-sm leading-relaxed text-foreground/60 dark:text-foreground/80">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
-                    <div className="mt-4 pt-4 border-t border-border/30">
-                      <p className="text-sm font-semibold">{t.author}</p>
-                      <p className="text-xs text-foreground/50 dark:text-foreground/60">
-                        {t.role}, {t.organization}
-                      </p>
-                    </div>
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
+          <div className="mx-auto max-w-2xl">
+            <TestimonialCarousel testimonials={placeholderTestimonials} />
           </div>
         </motion.div>
       </div>

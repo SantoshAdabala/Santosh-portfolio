@@ -10,6 +10,8 @@ import { AIParticleSimulator } from '@/components/ui/AIParticleSimulator';
 import { MagneticCursor } from '@/components/ui/MagneticCursor';
 import { CursorTrail } from '@/components/ui/CursorTrail';
 import { PageLoader } from '@/components/ui/PageLoader';
+import { CommandPalette } from '@/components/ui/CommandPalette';
+import { BackToTop } from '@/components/ui/BackToTop';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
@@ -103,10 +105,12 @@ export default function RootLayout({
             <main>{children}</main>
           </FluidMotion>
           <FloatingResume />
+          <BackToTop />
           <footer>
             <Footer />
           </footer>
           <EasterEgg />
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

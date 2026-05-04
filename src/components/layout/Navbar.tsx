@@ -102,6 +102,16 @@ export function Navbar() {
             );
           })}
           <div className="mx-1 h-8 w-px bg-border/30" />
+          <button
+            onClick={() => {
+              window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+            }}
+            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-[10px] text-foreground/40 transition-colors hover:text-foreground/70 hover:bg-white/5"
+            aria-label="Open command palette"
+          >
+            <span className="text-[10px]">⌘</span>
+            <span>K</span>
+          </button>
           <ThemeToggle />
         </div>
       </nav>

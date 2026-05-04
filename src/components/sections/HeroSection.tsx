@@ -9,6 +9,7 @@ import { TypingAnimation } from '@/components/ui/TypingAnimation';
 import { LetterAnimation } from '@/components/ui/LetterAnimation';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { CountUp } from '@/components/ui/CountUp';
+import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const keywords = ['LLM Fine-Tuning', 'Knowledge Distillation', 'PyTorch', 'Distributed ML', 'Agentic AI', 'RAG Systems'];
@@ -47,13 +48,12 @@ export function HeroSection() {
 
   return (
     <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden">
-      {/* ── Full-bleed hero image with parallax ── */}
+      {/* ── Full-bleed hero slideshow with parallax ── */}
       <div className="relative h-[70vh] w-full sm:h-[75vh] overflow-hidden">
-        <motion.img
-          src="/images/hero-ai-1.jpg"
-          alt="Santosh Adabala — AI & ML Engineer"
-          className="h-full w-full object-cover object-top"
-          style={prefersReduced ? {} : { y: imageY, scale: imageScale }}
+        <HeroSlideshow
+          className="absolute inset-0"
+          parallaxY={prefersReduced ? undefined : imageY}
+          parallaxScale={prefersReduced ? undefined : imageScale}
         />
         {/* Multi-layer gradient fade */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
@@ -83,7 +83,7 @@ export function HeroSection() {
 
       {/* ── Content overlapping the image ── */}
       <motion.div
-        className="relative z-10 -mt-44 px-6 sm:-mt-52"
+        className="relative z-10 -mt-40 px-6 sm:-mt-48"
         style={prefersReduced ? {} : { opacity: contentOpacity, y: contentY }}
       >
         <motion.div className="mx-auto flex max-w-5xl flex-col items-center text-center gap-8" {...motionProps}>
