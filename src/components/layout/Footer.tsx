@@ -1,6 +1,5 @@
 import { siteConfig } from '@/data/site-config';
 import { VisitorCounter } from '@/components/ui/VisitorCounter';
-import { PerformanceBadge } from '@/components/ui/PerformanceBadge';
 import { FooterWave } from '@/components/ui/FooterWave';
 
 const footerLinks = [
@@ -33,7 +32,6 @@ export function Footer() {
         </nav>
 
         <div className="flex flex-col items-center gap-3 text-center text-sm text-foreground/40 dark:text-foreground">
-          <PerformanceBadge />
           <VisitorCounter />
           <p>Designed as an interactive portfolio for ML, AI systems, and production impact.</p>
           <p>Last updated {siteConfig.lastUpdated}</p>

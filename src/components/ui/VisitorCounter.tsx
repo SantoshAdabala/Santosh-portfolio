@@ -8,22 +8,15 @@ export function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    // Use CountAPI to track and retrieve visitor count
-    const namespace = 'santosh-portfolio';
-    const key = 'visits';
-
-    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data?.value) setCount(data.value);
-      })
-      .catch(() => {
-        // Fallback: use localStorage-based counter
-        const stored = localStorage.getItem('portfolio-views');
-        const val = stored ? parseInt(stored, 10) + 1 : 1;
-        localStorage.setItem('portfolio-views', val.toString());
-        setCount(val);
-      });
+    // Use localStorage-based counter since CountAPI is dead
+    try {
+      const stored = localStorage.getItem('portfolio-views');
+      const val = stored ? parseInt(stored, 10) + 1 : 1;
+      localStorage.setItem('portfolio-views', val.toString());
+      setCount(val);
+    } catch {
+      // localStorage not available
+    }
   }, []);
 
   if (count === null) return null;
