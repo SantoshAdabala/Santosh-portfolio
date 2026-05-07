@@ -91,6 +91,7 @@ export function HeroSection() {
           {/* Greeting */}
           <motion.div
             className="text-sm text-foreground/40"
+            suppressHydrationWarning
             {...(prefersReduced ? {} : {
               initial: { opacity: 0 },
               animate: { opacity: 1 },

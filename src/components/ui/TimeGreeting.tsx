@@ -22,14 +22,17 @@ function getReferrerGreeting(): string | null {
 }
 
 export function TimeGreeting() {
-  const [greeting, setGreeting] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
+    setMounted(true);
     const referrerGreeting = getReferrerGreeting();
     setGreeting(referrerGreeting ?? getGreeting());
   }, []);
 
-  if (!greeting) return null;
+  // Return empty span on server to avoid hydration mismatch
+  if (!mounted) return <span />;
 
   return <span className="text-foreground/40">{greeting}</span>;
 }
