@@ -9,84 +9,118 @@ import { experience } from '@/data/experience';
 import { usePortfolioInteraction } from '@/components/providers/PortfolioInteractionProvider';
 
 const quickQuestions = [
-  'What is your strongest LLM project?',
-  'Show healthcare ML experience',
-  'What MLOps work have you done?',
-  'Which projects use LangChain?',
+  'What healthcare ML have you done?',
+  'Tell me about your LLM work',
+  'What is your tech stack?',
+  'Show me your experience',
 ];
 
 function buildAnswer(query: string, mode: 'recruiter' | 'engineer') {
   const text = query.toLowerCase();
 
-  if (text.includes('health') || text.includes('clinical') || text.includes('medical')) {
+  // Healthcare / Clinical
+  if (text.includes('health') || text.includes('clinical') || text.includes('medical') || text.includes('hipaa') || text.includes('claims') || text.includes('insurance') || text.includes('ner') || text.includes('phi') || text.includes('pii')) {
     return {
-      title: 'Healthcare ML evidence',
+      title: 'Healthcare ML experience',
       body:
-        'The strongest healthcare proof is the Clinical NLP pipeline: 93.2% F1 retained, 3.5x faster inference, 6.6x model compression, and 900K records processed in 3.5 minutes. The BCBS experience also shows production anomaly detection and large-scale healthcare data work.',
-      target: 'case-studies',
-    };
-  }
-
-  if (text.includes('llm') || text.includes('fine') || text.includes('distillation') || text.includes('model')) {
-    return {
-      title: mode === 'recruiter' ? 'Production LLM impact' : 'LLM implementation depth',
-      body:
-        mode === 'recruiter'
-          ? 'The portfolio emphasizes production LLM outcomes: faster inference, smaller models, reliable pipelines, and measurable healthcare/enterprise AI impact.'
-          : 'The strongest technical thread is LLM optimization: PyTorch, HuggingFace, distillation, ONNX Runtime, quantization, LangChain workflows, and agentic systems.',
-      target: 'impact',
-    };
-  }
-
-  if (text.includes('mlops') || text.includes('aws') || text.includes('pipeline') || text.includes('distributed')) {
-    return {
-      title: 'MLOps and scale',
-      body:
-        'Relevant evidence includes AWS EMR processing, PySpark pipelines, FastAPI services, Docker/Lambda deployment, Prometheus monitoring, Terraform, Databricks, and data lake work with Apache Hudi.',
-      target: 'projects',
-    };
-  }
-
-  if (text.includes('langchain') || text.includes('agent') || text.includes('rag')) {
-    const matches = projects
-      .filter((project) => `${project.title} ${project.description} ${project.techStack.join(' ')}`.toLowerCase().includes('langchain') || project.category === 'rag')
-      .map((project) => project.title)
-      .slice(0, 3)
-      .join(', ');
-    return {
-      title: 'Agentic AI and RAG work',
-      body: `Relevant builds include ${matches}. They show modular agent workflows, tool integrations, vector retrieval patterns, and production-oriented assistant design.`,
-      target: 'projects',
-    };
-  }
-
-  if (text.includes('skill') || text.includes('stack') || text.includes('technology')) {
-    const topSkills = skillCategories
-      .flatMap((category) => category.skills)
-      .sort((a, b) => b.proficiency - a.proficiency)
-      .slice(0, 6)
-      .map((skill) => skill.name)
-      .join(', ');
-    return {
-      title: 'Core stack',
-      body: `Top skills shown on the site include ${topSkills}. Click any skill in the Skills section to filter matching projects.`,
-      target: 'skills',
-    };
-  }
-
-  if (text.includes('experience') || text.includes('job') || text.includes('work')) {
-    return {
-      title: 'Experience summary',
-      body: `The timeline includes ${experience.length} entries, with the current role focused on LLM fine-tuning, distillation, distributed ML pipelines, agentic workflows, and anomaly detection.`,
+        'Clinical NLP pipeline: distilled Bio_ClinicalBERT (110M→65M), 93.2% F1 retained, 3.5x faster inference. At BCBS Colorado, built ClinicalBERT-based analysis of clinical notes and claims, HIPAA-compliant pipelines processing data from 6+ payer systems, and denial prediction models. At Accenture, built anomaly detection for insurance fraud.',
       target: 'experience',
     };
   }
 
+  // LLM / Models / Fine-tuning
+  if (text.includes('llm') || text.includes('fine') || text.includes('distill') || text.includes('model') || text.includes('compress') || text.includes('onnx') || text.includes('bert') || text.includes('transformer')) {
+    return {
+      title: mode === 'recruiter' ? 'Production LLM impact' : 'LLM technical depth',
+      body:
+        mode === 'recruiter'
+          ? 'Compressed models from 110M to 65M params retaining 93.2% F1. Achieved 3.5x inference speedup (39ms→11ms) and 6.6x size reduction (411MB→62.6MB). Currently building an RLHF alignment pipeline for a 7B model on AWS SageMaker.'
+          : 'Knowledge distillation with PyTorch/HuggingFace, ONNX Runtime optimization, INT8 quantization, structured pruning with recovery fine-tuning. Teacher: Bio_ClinicalBERT, Student: DistilClinicalBERT. A/B testing confirmed safe deployment.',
+      target: 'projects',
+    };
+  }
+
+  // MLOps / AWS / Pipelines / Infrastructure
+  if (text.includes('mlops') || text.includes('aws') || text.includes('pipeline') || text.includes('distributed') || text.includes('spark') || text.includes('emr') || text.includes('docker') || text.includes('terraform') || text.includes('deploy') || text.includes('infra')) {
+    return {
+      title: 'MLOps & infrastructure',
+      body:
+        'AWS EMR pipeline processing 900K records in 3.5 min at 4,350 docs/sec. Azure Data Factory + Synapse for HIPAA-compliant healthcare pipelines. Databricks with SLA monitoring. FastAPI serving with Prometheus + OpenTelemetry. Docker, Terraform, and serverless Lambda deployments.',
+      target: 'projects',
+    };
+  }
+
+  // Agents / LangChain / RAG
+  if (text.includes('langchain') || text.includes('agent') || text.includes('rag') || text.includes('chatbot') || text.includes('assistant')) {
+    const matches = projects
+      .filter((p) => `${p.title} ${p.description} ${p.techStack.join(' ')}`.toLowerCase().includes('langchain') || p.category === 'rag' || p.description.toLowerCase().includes('agent'))
+      .map((p) => p.title)
+      .slice(0, 3)
+      .join(', ');
+    return {
+      title: 'Agentic AI & RAG',
+      body: `Projects: ${matches}. These show multi-agent routing, tool integrations, vector retrieval, and production-oriented assistant design with Google ADK and LangChain.`,
+      target: 'projects',
+    };
+  }
+
+  // Skills / Tech stack
+  if (text.includes('skill') || text.includes('stack') || text.includes('tech') || text.includes('python') || text.includes('pytorch') || text.includes('language')) {
+    const topSkills = skillCategories
+      .flatMap((c) => c.skills)
+      .sort((a, b) => b.proficiency - a.proficiency)
+      .slice(0, 8)
+      .map((s) => s.name)
+      .join(', ');
+    return {
+      title: 'Core tech stack',
+      body: `Top skills: ${topSkills}. The Skills section has an interactive constellation — drag nodes and filter by category to explore.`,
+      target: 'skills',
+    };
+  }
+
+  // Experience / Career / Jobs
+  if (text.includes('experience') || text.includes('job') || text.includes('work') || text.includes('career') || text.includes('bcbs') || text.includes('accenture') || text.includes('blue cross')) {
+    return {
+      title: 'Career experience',
+      body: `Currently ML Engineer at Blue Cross Blue Shield of Colorado (Aug 2024–Present) working on clinical NLP, claims prediction, and HIPAA-compliant pipelines. Previously at Accenture (Jul 2019–Aug 2022) building insurance ML models, anomaly detection, and Azure Databricks pipelines for Sun Life Insurance.`,
+      target: 'experience',
+    };
+  }
+
+  // Education / Certifications
+  if (text.includes('education') || text.includes('degree') || text.includes('certif') || text.includes('aws cert') || text.includes('university')) {
+    return {
+      title: 'Education & certifications',
+      body: 'M.S. Data Science from University of Colorado Boulder. B.Tech ECE from JNTU Kakinada. Certified: AWS ML Engineer Associate, AWS Solutions Architect Associate, NVIDIA AI Anomaly Detection, Azure DP-900.',
+      target: 'certifications',
+    };
+  }
+
+  // Contact / Hire
+  if (text.includes('contact') || text.includes('hire') || text.includes('email') || text.includes('reach') || text.includes('connect')) {
+    return {
+      title: 'Get in touch',
+      body: 'Available for new opportunities. Reach out via the contact form, email at santoshbalu25@gmail.com, or connect on LinkedIn. There\'s also a downloadable contact card at /card.',
+      target: 'contact',
+    };
+  }
+
+  // Projects general
+  if (text.includes('project') || text.includes('build') || text.includes('portfolio') || text.includes('show')) {
+    return {
+      title: 'Featured projects',
+      body: 'The Projects section has flip cards — click any card to see detailed metrics on the back. Key projects: Clinical NLP (NER distillation), Wisdom Vault (cryptographic AI inheritance), Agentic AI Parenting (multi-agent system), and Cold Email Generator (RAG pipeline).',
+      target: 'projects',
+    };
+  }
+
+  // Default fallback
   return {
-    title: 'Best place to start',
+    title: 'How to explore this portfolio',
     body:
-      'Start with Case Studies for depth, Impact Dashboard for metrics, and Projects for code. For hiring context, switch to Recruiter mode; for implementation detail, switch to Engineer mode.',
-    target: 'case-studies',
+      'Try asking about: healthcare ML, LLM compression, my tech stack, work experience, projects, or certifications. You can also switch between Recruiter and Engineer mode in the top-right for different perspectives.',
+    target: 'about',
   };
 }
 

@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   tagline:
     'I help teams turn LLM prototypes into production systems: smaller models, faster inference, reliable pipelines, and measurable AI outcomes across healthcare and enterprise data.',
   description:
-    'Portfolio of Siva Naga Santosh Adabala — Machine Learning Engineer focused on production LLM systems, model compression, NLP pipelines, and distributed ML infrastructure.',
+    'Portfolio of Siva Naga Santosh Adabala — Machine Learning Engineer with 5+ years applying ML, NLP, and predictive analytics to healthcare and insurance data.',
   email: 'santoshbalu25@gmail.com',
   linkedIn: 'https://www.linkedin.com/in/santosh-adabala/',
   github: 'https://github.com/SantoshAdabala',

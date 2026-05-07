@@ -16,7 +16,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const keywords = ['LLM Fine-Tuning', 'Knowledge Distillation', 'PyTorch', 'Distributed ML', 'Agentic AI', 'RAG Systems'];
 
 const stats = [
-  { value: '6+', label: 'Years Experience', color: 'rgba(139, 92, 246, 0.2)' },
+  { value: '5+', label: 'Years Experience', color: 'rgba(139, 92, 246, 0.2)' },
   { value: '10M+', label: 'Records Processed', color: 'rgba(6, 182, 212, 0.2)' },
   { value: '3.5x', label: 'Inference Speedup', color: 'rgba(139, 92, 246, 0.2)' },
   { value: '$2M+', label: 'Fraud Flagged', color: 'rgba(6, 182, 212, 0.2)' },

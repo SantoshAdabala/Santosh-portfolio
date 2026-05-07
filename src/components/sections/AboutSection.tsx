@@ -43,7 +43,7 @@ export function AboutSection() {
 
         {/* Apple-style word-by-word reveal */}
         <TextReveal
-          text="I build ML systems that make large language models faster, smaller, and production-ready. With 6+ years of experience, I specialize in LLM customization workflows — fine-tuning, knowledge distillation, prompt optimization, and model compression."
+          text="I build ML systems that make large language models faster, smaller, and production-ready. With 5+ years of experience applying ML, NLP, and predictive analytics to healthcare and insurance data, I specialize in clinical text analysis, model compression, and production ML pipelines."
           className="mx-auto max-w-3xl text-center text-xl leading-relaxed text-foreground/50 dark:text-foreground/70"
         />
 

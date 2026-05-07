@@ -80,9 +80,9 @@ export function GitHubStatsSection() {
         {/* Currently Building */}
         <div className="mt-8">
           <CurrentlyBuilding
-            title="RLHF & Reward Modeling Research"
-            description="Exploring reinforcement learning from human feedback for LLM alignment — building reward models and preference datasets."
-            progress={35}
+            title="AlignLLM — LLM Alignment Pipeline on AWS"
+            description="Building a 7B chat model alignment pipeline using SFT, DPO, RLHF, and LoRA/QLoRA on AWS SageMaker with Terraform infrastructure."
+            progress={45}
             url="https://github.com/SantoshAdabala"
           />
         </div>
