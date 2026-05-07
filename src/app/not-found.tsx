@@ -7,13 +7,50 @@ import { Button } from '@/components/ui/Button';
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-      {/* Animated 404 */}
+      {/* Animated 404 with floating illustration */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, filter: 'blur(20px)' }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
         transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        className="relative"
       >
-        <h1 className="text-[120px] sm:text-[180px] font-bold leading-none gradient-text">
+        {/* Animated SVG illustration */}
+        <svg width="200" height="160" viewBox="0 0 200 160" className="mx-auto mb-6">
+          <motion.circle
+            cx="100" cy="80" r="50"
+            fill="none" stroke="rgba(139,92,246,0.3)" strokeWidth="2"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1, rotate: 360 }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+          />
+          <motion.circle
+            cx="100" cy="80" r="35"
+            fill="none" stroke="rgba(6,182,212,0.3)" strokeWidth="1.5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1, rotate: -360 }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          />
+          <motion.text
+            x="100" y="85" textAnchor="middle" fontSize="18" fontWeight="bold"
+            fill="rgba(139,92,246,0.6)" fontFamily="monospace"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            NULL
+          </motion.text>
+          {/* Floating particles */}
+          {[0, 1, 2, 3, 4].map((i) => (
+            <motion.circle
+              key={i}
+              cx={60 + i * 20} cy={140}
+              r={2}
+              fill="rgba(139,92,246,0.4)"
+              animate={{ y: [-10, -30, -10], opacity: [0, 1, 0] }}
+              transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+            />
+          ))}
+        </svg>
+        <h1 className="text-[100px] sm:text-[140px] font-bold leading-none gradient-text text-center">
           404
         </h1>
       </motion.div>

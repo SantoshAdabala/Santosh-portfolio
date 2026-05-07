@@ -1,6 +1,7 @@
 import { siteConfig } from '@/data/site-config';
 import { VisitorCounter } from '@/components/ui/VisitorCounter';
 import { PerformanceBadge } from '@/components/ui/PerformanceBadge';
+import { FooterWave } from '@/components/ui/FooterWave';
 
 const footerLinks = [
   { label: 'Home', href: '#hero' },
@@ -15,6 +16,8 @@ const footerLinks = [
 
 export function Footer() {
   return (
+    <>
+    <FooterWave />
     <footer className="border-t border-border/30 px-6 py-12 pb-24 md:pb-12">
       <div className="mx-auto max-w-7xl">
         <nav className="mb-8 flex flex-wrap justify-center gap-4">
@@ -37,5 +40,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

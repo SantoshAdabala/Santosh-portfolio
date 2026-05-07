@@ -10,6 +10,7 @@ import { LetterAnimation } from '@/components/ui/LetterAnimation';
 import { SpotlightCard } from '@/components/ui/SpotlightCard';
 import { CountUp } from '@/components/ui/CountUp';
 import { HeroSlideshow } from '@/components/ui/HeroSlideshow';
+import { GradientMesh } from '@/components/ui/GradientMesh';
 import { TimeGreeting } from '@/components/ui/TimeGreeting';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
@@ -49,6 +50,8 @@ export function HeroSection() {
 
   return (
     <section id="hero" ref={heroRef} className="relative min-h-screen overflow-hidden">
+      {/* Animated gradient mesh */}
+      <GradientMesh />
       {/* ── Full-bleed hero slideshow with parallax ── */}
       <div className="relative h-[70vh] w-full sm:h-[75vh] overflow-hidden">
         <HeroSlideshow

@@ -8,6 +8,7 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { EasterEgg } from '@/components/ui/EasterEgg';
 import { CommandPalette } from '@/components/ui/CommandPalette';
 import { BackToTop } from '@/components/ui/BackToTop';
+import { KeyboardHint } from '@/components/ui/KeyboardHint';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
 import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
@@ -106,6 +107,7 @@ export default function RootLayout({
             <AskPortfolio />
             <FloatingResume />
             <BackToTop />
+            <KeyboardHint />
             <footer>
               <Footer />
             </footer>
