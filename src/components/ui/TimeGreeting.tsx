@@ -22,7 +22,7 @@ function getReferrerGreeting(): string | null {
 }
 
 export function TimeGreeting() {
-  const [greeting, setGreeting] = useState('');
+  const [greeting, setGreeting] = useState<string | null>(null);
 
   useEffect(() => {
     const referrerGreeting = getReferrerGreeting();
