@@ -84,6 +84,12 @@ export function CommandPalette() {
       action: () => { window.location.href = '/card/'; close(); },
       category: 'actions', keywords: 'badge business card download',
     },
+    {
+      id: 'ai-demos', label: 'Resume/JD Analyzer (AI Demo)',
+      icon: ExternalLink,
+      action: () => { window.location.href = '/demos'; close(); },
+      category: 'actions', keywords: 'demo ai analyze resume job match',
+    },
   ];
 
   const filtered = query

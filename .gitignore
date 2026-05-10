@@ -18,3 +18,8 @@ Thumbs.db
 
 # Kiro
 .kiro/
+
+# Environment variables
+.env
+.env.local
+.env.production.local

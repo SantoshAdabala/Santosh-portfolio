@@ -181,6 +181,10 @@ export function HeroSection() {
               <Zap className="mr-2 h-4 w-4" />
               View Projects
             </Button>
+            <Button variant="secondary" href="/demos" className="glass px-8 py-3 text-base">
+              <Sparkles className="mr-2 h-4 w-4" />
+              AI Demos
+            </Button>
             <Button variant="secondary" href={siteConfig.resumeUrl} download className="glass px-8 py-3 text-base">
               <Download className="mr-2 h-4 w-4" />
               Download CV

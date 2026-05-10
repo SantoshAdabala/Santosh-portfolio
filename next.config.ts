@@ -1,16 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  devIndicators: false,
-  poweredByHeader: false,
-  webpack: (config, { dev }) => {
-    if (dev) {
-      config.cache = false;
-    }
-    return config;
-  },
+  // Removed 'output: export' to enable API routes for AI demos
 };
 
 export default nextConfig;
