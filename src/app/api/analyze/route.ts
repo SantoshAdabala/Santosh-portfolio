@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Groq from 'groq-sdk';
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
+function getGroqClient() {
+  return new Groq({ apiKey: process.env.GROQ_API_KEY });
+}
 
 const SYSTEM_PROMPT = `You are an expert resume analyzer and career coach. Given a resume and a job description, analyze the match and provide actionable feedback.
 
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const groq = getGroqClient();
     const completion = await groq.chat.completions.create({
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
