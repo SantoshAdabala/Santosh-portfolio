@@ -16,8 +16,9 @@ Thumbs.db
 # IDE
 .vscode/
 
-# Kiro
+# AI tooling
 .kiro/
+.claude/
 
 # Environment variables
 .env
