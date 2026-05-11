@@ -7,14 +7,30 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
+  label?: string;
   className?: string;
 }
 
-export function SectionHeading({ title, subtitle, className }: SectionHeadingProps) {
+export function SectionHeading({ title, subtitle, label, className }: SectionHeadingProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <div className={cn('mb-16 text-center', className)}>
+    <div className={cn('mb-12 sm:mb-16 text-center', className)}>
+      {/* Eyebrow label */}
+      {label && (
+        <motion.span
+          className="mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-accent/80"
+          {...(prefersReduced ? {} : {
+            initial: { opacity: 0, y: 10 },
+            whileInView: { opacity: 1, y: 0 },
+            viewport: { once: true, margin: '-50px' },
+            transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+          })}
+        >
+          {label}
+        </motion.span>
+      )}
+
       <motion.h2
         className="gradient-text text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
         {...(prefersReduced ? {} : {
@@ -26,9 +42,10 @@ export function SectionHeading({ title, subtitle, className }: SectionHeadingPro
       >
         {title}
       </motion.h2>
+
       {subtitle && (
         <motion.p
-          className="mt-4 text-lg text-foreground/50 dark:text-foreground/60"
+          className="mt-4 text-base sm:text-lg text-foreground/50 leading-relaxed max-w-2xl mx-auto"
           {...(prefersReduced ? {} : {
             initial: { opacity: 0, y: 10 },
             whileInView: { opacity: 1, y: 0 },
@@ -39,6 +56,7 @@ export function SectionHeading({ title, subtitle, className }: SectionHeadingPro
           {subtitle}
         </motion.p>
       )}
+
       {/* Decorative line */}
       <motion.div
         className="mx-auto mt-6 h-[1px] w-16"

@@ -14,41 +14,45 @@ import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 export default function Home() {
   return (
     <>
-      {/* Act 1: Introduction — dramatic, cinematic */}
+      {/* ═══ ACT 1: INTRODUCTION — Hero + Tech Marquee flow together ═══ */}
       <HeroSection />
       <TechMarquee />
-      <AnimatedDivider />
 
-      {/* Act 2: Who I am — gentle, let content breathe */}
-      <AppleReveal variant="gentle"><AboutSection /></AppleReveal>
-      <AnimatedDivider />
+      {/* ═══ ACT 2: IDENTITY — About + Skills, gentle reveals ═══ */}
+      <div className="mt-24 sm:mt-32">
+        <AnimatedDivider />
+        <AppleReveal variant="gentle"><AboutSection /></AppleReveal>
+        <div className="mt-12 sm:mt-16">
+          <AppleReveal><SkillsSection /></AppleReveal>
+        </div>
+      </div>
 
-      {/* Act 3: What I know — default pace */}
-      <AppleReveal><SkillsSection /></AppleReveal>
-      <AnimatedDivider />
+      {/* ═══ ACT 3: PROOF — Projects + Experience, dramatic showcase ═══ */}
+      <div className="mt-24 sm:mt-32">
+        <AnimatedDivider />
+        <AppleReveal variant="dramatic"><ProjectsSection /></AppleReveal>
+        <div className="mt-12 sm:mt-16">
+          <AppleReveal variant="gentle" delay={0.1}><ExperienceSection /></AppleReveal>
+        </div>
+      </div>
 
-      {/* Act 4: What I've built — dramatic, showcase work */}
-      <AppleReveal variant="dramatic"><ProjectsSection /></AppleReveal>
-      <AnimatedDivider />
+      {/* ═══ ACT 4: CREDIBILITY — Publications + Certs + GitHub, understated ═══ */}
+      <div className="mt-24 sm:mt-32">
+        <AnimatedDivider />
+        <AppleReveal delay={0.05}><PublicationsSection /></AppleReveal>
+        <div className="mt-12 sm:mt-16">
+          <AppleReveal variant="gentle"><CertificationsSection /></AppleReveal>
+        </div>
+        <div className="mt-12 sm:mt-16">
+          <AppleReveal><GitHubStatsSection /></AppleReveal>
+        </div>
+      </div>
 
-      {/* Act 5: Where I've been — gentle, professional */}
-      <AppleReveal variant="gentle" delay={0.1}><ExperienceSection /></AppleReveal>
-      <AnimatedDivider />
-
-      {/* Act 6: Thought leadership — default */}
-      <AppleReveal delay={0.05}><PublicationsSection /></AppleReveal>
-      <AnimatedDivider />
-
-      {/* Act 7: Credentials — gentle, understated */}
-      <AppleReveal variant="gentle"><CertificationsSection /></AppleReveal>
-      <AnimatedDivider />
-
-      {/* Act 8: Activity proof — default */}
-      <AppleReveal><GitHubStatsSection /></AppleReveal>
-      <AnimatedDivider />
-
-      {/* Act 9: Call to action — dramatic close */}
-      <AppleReveal variant="dramatic"><ContactSection /></AppleReveal>
+      {/* ═══ ACT 5: CONNECTION — Dramatic close ═══ */}
+      <div className="mt-24 sm:mt-32">
+        <AnimatedDivider />
+        <AppleReveal variant="dramatic"><ContactSection /></AppleReveal>
+      </div>
     </>
   );
 }

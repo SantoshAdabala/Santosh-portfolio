@@ -514,3 +514,41 @@ p {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ══════════════════════════════════════════════
+   Design System — Unified Visual Language
+   ══════════════════════════════════════════════ */
+@layer base {
+  :root {
+    --section-spacing: clamp(4rem, 8vw, 8rem);
+    --content-width: 72rem;
+    --text-width: 42rem;
+  }
+}
+
+@layer utilities {
+  /* Consistent section spacing */
+  .section-container {
+    @apply mx-auto max-w-[var(--content-width)] px-6 py-[var(--section-spacing)];
+  }
+
+  /* Text width constraint for readability */
+  .prose-width {
+    max-width: var(--text-width);
+  }
+
+  /* Unified card style */
+  .card-surface {
+    @apply rounded-2xl border border-border/30 bg-background/50 backdrop-blur-sm;
+  }
+
+  /* Consistent gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent via-purple-400 to-cyan bg-clip-text text-transparent;
+  }
+
+  /* Subtle glass effect */
+  .glass-surface {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.06];
+  }
+}
