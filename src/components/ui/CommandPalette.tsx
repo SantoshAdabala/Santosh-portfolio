@@ -85,10 +85,10 @@ export function CommandPalette() {
       category: 'actions', keywords: 'badge business card download',
     },
     {
-      id: 'ai-demos', label: 'Resume/JD Analyzer (AI Demo)',
+      id: 'ai-demos', label: 'Career Intelligence',
       icon: ExternalLink,
-      action: () => { window.location.href = '/demos'; close(); },
-      category: 'actions', keywords: 'demo ai analyze resume job match',
+      action: () => { window.location.assign('/demos'); close(); },
+      category: 'actions', keywords: 'career intelligence analyze resume job match copilot',
     },
   ];
 

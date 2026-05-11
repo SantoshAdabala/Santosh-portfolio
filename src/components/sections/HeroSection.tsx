@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Download, Sparkles, Zap, ChevronDown } from 'lucide-react';
@@ -181,10 +182,13 @@ export function HeroSection() {
               <Zap className="mr-2 h-4 w-4" />
               View Projects
             </Button>
-            <Button variant="secondary" href="/demos" className="glass px-8 py-3 text-base">
+            <Link
+              href="/demos"
+              className="glass inline-flex items-center justify-center rounded-xl px-8 py-3 text-base font-medium text-foreground transition-all hover:scale-[1.02] hover:shadow-lg"
+            >
               <Sparkles className="mr-2 h-4 w-4" />
-              AI Demos
-            </Button>
+              Career Intelligence
+            </Link>
             <Button variant="secondary" href={siteConfig.resumeUrl} download className="glass px-8 py-3 text-base">
               <Download className="mr-2 h-4 w-4" />
               Download CV
