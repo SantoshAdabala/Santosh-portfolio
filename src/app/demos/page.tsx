@@ -84,6 +84,36 @@ function maskPII(text: string): string {
 }
 
 /**
+ * Loads PDF.js library from CDN. Caches the instance for subsequent calls.
+ */
+let pdfjsCache: unknown = null;
+async function loadPdfJs(cdnBase: string) {
+  if (pdfjsCache) return pdfjsCache as { getDocument: (params: { data: ArrayBuffer }) => { promise: Promise<{ numPages: number; getPage: (n: number) => Promise<{ getTextContent: () => Promise<{ items: unknown[] }> }> }> }; GlobalWorkerOptions: { workerSrc: string } };
+
+  // Load via script tag (works reliably in all browsers)
+  await new Promise<void>((resolve, reject) => {
+    if (document.querySelector('script[data-pdfjs]')) {
+      resolve();
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = `${cdnBase}/pdf.min.mjs`;
+    script.type = 'module';
+    script.setAttribute('data-pdfjs', 'true');
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error('Failed to load PDF.js'));
+    document.head.appendChild(script);
+  });
+
+  // Module scripts don't set window globals, so use dynamic import instead
+  const mod = await import(/* webpackIgnore: true */ `${cdnBase}/pdf.min.mjs`);
+  const lib = mod.default || mod;
+  lib.GlobalWorkerOptions.workerSrc = `${cdnBase}/pdf.worker.min.mjs`;
+  pdfjsCache = lib;
+  return lib;
+}
+
+/**
  * Generates a structured markdown prompt for AI resume tailoring.
  */
 function generateExportPrompt(resume: string, jd: string, analysis: CopilotAnalysis): string {
@@ -169,21 +199,35 @@ export default function DemosPage() {
 
   async function handlePdfUpload(file: File) {
     setIsUploading(true);
+    setError(null);
     try {
-      // Read the file as text — works for text-layer PDFs and plain text files
-      const text = await file.text();
+      const arrayBuffer = await file.arrayBuffer();
 
-      // Check if we got readable text (not binary garbage)
-      const printableRatio = text.replace(/[^\x20-\x7E\n\r\t]/g, '').length / text.length;
+      // Load PDF.js from CDN (avoids Next.js webpack bundling issues)
+      const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168';
+      const pdfjsLib = await loadPdfJs(PDFJS_CDN);
 
-      if (printableRatio > 0.8 && text.trim().length > 50) {
-        setResume(text.trim());
-        setError(null);
-      } else {
-        setError('Could not read this PDF. Please paste your resume text directly into the field above.');
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = '';
+
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items
+          .filter((item: unknown) => typeof item === 'object' && item !== null && 'str' in item)
+          .map((item: unknown) => (item as { str: string }).str)
+          .join(' ');
+        fullText += pageText + '\n';
       }
+
+      if (!fullText.trim() || fullText.trim().length < 50) {
+        setError('Could not extract text from this PDF. Please paste your resume text directly.');
+        return;
+      }
+
+      setResume(fullText.trim());
     } catch {
-      setError('Failed to read file. Please paste your resume text directly.');
+      setError('Failed to parse PDF. Please paste your resume text directly.');
     } finally {
       setIsUploading(false);
     }

@@ -31,30 +31,19 @@ export function TechMarquee() {
       {/* Staggered initial reveal + infinite scroll */}
       <motion.div
         className="flex gap-6 whitespace-nowrap"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.05 } },
-        }}
         animate={{ x: ['0%', '-50%'] }}
-        transition={{ x: { repeat: Infinity, repeatType: 'loop', duration: 40, ease: 'linear' } }}
+        transition={{ x: { repeat: Infinity, repeatType: 'loop', duration: 50, ease: 'linear' } }}
       >
         {[0, 1].map((copy) => (
           <div key={copy} className="flex shrink-0 gap-6">
-            {techItems.map((tech, i) => (
-              <motion.span
+            {techItems.map((tech) => (
+              <span
                 key={`${copy}-${tech}`}
                 className="inline-flex items-center gap-2 rounded-full border border-accent/15 bg-accent/5 px-5 py-2 text-sm font-medium text-foreground/60 dark:text-foreground/70 transition-colors hover:border-accent/40 hover:text-accent-light hover:bg-accent/10"
-                variants={{
-                  hidden: { opacity: 0, y: 20, scale: 0.8 },
-                  visible: { opacity: 1, y: 0, scale: 1 },
-                }}
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-accent/40" />
                 {tech}
-              </motion.span>
+              </span>
             ))}
           </div>
         ))}

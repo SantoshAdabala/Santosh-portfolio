@@ -14,6 +14,7 @@ import { FluidMotion } from '@/components/ui/FluidMotion';
 import { FloatingResume } from '@/components/ui/FloatingResume';
 import { PortfolioModeToggle } from '@/components/ui/PortfolioModeToggle';
 import { AskPortfolio } from '@/components/ui/AskPortfolio';
+import { ScrollGradient } from '@/components/ui/ScrollGradient';
 import { PortfolioInteractionProvider } from '@/components/providers/PortfolioInteractionProvider';
 import { siteConfig } from '@/data/site-config';
 import './globals.css';
@@ -94,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className="noise-overlay">
         <ThemeProvider attribute="class" defaultTheme="dark">
+          <ScrollGradient />
           <PortfolioInteractionProvider>
             <SmoothScroll />
             <ScrollProgress />

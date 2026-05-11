@@ -14,24 +14,41 @@ import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 export default function Home() {
   return (
     <>
+      {/* Act 1: Introduction — dramatic, cinematic */}
       <HeroSection />
       <TechMarquee />
       <AnimatedDivider />
-      <AppleReveal><AboutSection /></AppleReveal>
+
+      {/* Act 2: Who I am — gentle, let content breathe */}
+      <AppleReveal variant="gentle"><AboutSection /></AppleReveal>
       <AnimatedDivider />
+
+      {/* Act 3: What I know — default pace */}
       <AppleReveal><SkillsSection /></AppleReveal>
       <AnimatedDivider />
-      <AppleReveal><ProjectsSection /></AppleReveal>
+
+      {/* Act 4: What I've built — dramatic, showcase work */}
+      <AppleReveal variant="dramatic"><ProjectsSection /></AppleReveal>
       <AnimatedDivider />
-      <AppleReveal><ExperienceSection /></AppleReveal>
+
+      {/* Act 5: Where I've been — gentle, professional */}
+      <AppleReveal variant="gentle" delay={0.1}><ExperienceSection /></AppleReveal>
       <AnimatedDivider />
-      <AppleReveal><PublicationsSection /></AppleReveal>
+
+      {/* Act 6: Thought leadership — default */}
+      <AppleReveal delay={0.05}><PublicationsSection /></AppleReveal>
       <AnimatedDivider />
-      <AppleReveal><CertificationsSection /></AppleReveal>
+
+      {/* Act 7: Credentials — gentle, understated */}
+      <AppleReveal variant="gentle"><CertificationsSection /></AppleReveal>
       <AnimatedDivider />
+
+      {/* Act 8: Activity proof — default */}
       <AppleReveal><GitHubStatsSection /></AppleReveal>
       <AnimatedDivider />
-      <AppleReveal><ContactSection /></AppleReveal>
+
+      {/* Act 9: Call to action — dramatic close */}
+      <AppleReveal variant="dramatic"><ContactSection /></AppleReveal>
     </>
   );
 }
