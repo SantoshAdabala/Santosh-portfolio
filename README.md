@@ -1,4 +1,4 @@
-# Santosh Adabala — ML Portfolio
+# Santosh Adabala - ML Portfolio
 
 Personal portfolio website for ML, AI systems, and production impact.
 
